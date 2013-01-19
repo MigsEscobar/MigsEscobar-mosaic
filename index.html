@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mosaic Plugin</title>
+  
+<script type="text/stylesheet" src="style.css"></script>
+</head>
+<body>
+<div id="container">
+ <div id="picdiv">
+    
+<ul>
+<li><img src="http://placehold.it/250x200" width="250" height="200" data-content="this is some additional content" /></li>
+<li><img src="http://placehold.it/250x500" width="250" height="500" data-content="this is also additional content"  /></li>
+<li><img src="http://placehold.it/250x300" width="250" height="300" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x450" width="250" height="450" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x350" width="250" height="350" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x300" width="250" height="300" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x250" width="250" height="250" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x175" width="250" height="175" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x200" width="250" height="200" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x500" width="250" height="500" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x300" width="250" height="300" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x450" width="250" height="450" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x350" width="250" height="350" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x300" width="250" height="300" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x250" width="250" height="250" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x175" width="250" height="175" data-content="this is some additional content"  /></li>
+</ul>
+ </div> 
+  </div>
+
+ <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="js/mosaic.jquery.js"></script>
+ <script>
+    $(document).ready(function(){
+  
+  $('#picdiv').mosaic({'colNum': 4,'margin': 20,'imgWidth': 250});
+    }); 
+ </script> 
+</body>
+</html>

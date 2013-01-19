@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Mosaic</title>
+	<style>
+		ul{
+			list-style: none;
+		}
+		.mosaic-info{
+			position:absolute;
+			left:0;
+			bottom:0;
+			
+			background-color:rgb(0,0,0);
+			color:#fff;
+			
+		}
+		
+		.mosaic-content{
+			padding:20px;
+			font:11px 'helvetica Neue'
+		}
+	</style>
+</head>
+<body>
+<div id="mosaic">
+
+<ul>
+<li><img src="http://placehold.it/250x200" width="250" height="200" data-content="this is some additional content" /></li>
+<li><img src="http://placehold.it/250x500" width="250" height="500" data-content="this is also additional content"  /></li>
+<li><img src="http://placehold.it/250x300" width="250" height="300" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x450" width="250" height="450" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x350" width="250" height="350" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x300" width="250" height="300" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x250" width="250" height="250" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x175" width="250" height="175" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x200" width="250" height="200" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x500" width="250" height="500" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x300" width="250" height="300" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x450" width="250" height="450" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x350" width="250" height="350" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x300" width="250" height="300" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x250" width="250" height="250" data-content="this is some additional content"  /></li>
+<li><img src="http://placehold.it/250x175" width="250" height="175" data-content="this is some additional content"  /></li>
+</ul>
+</div>
+
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script>
+$('document').ready(function(){
+	
+	var colNum = 6;
+	var margin = 20;
+	var imgWidth = 250;
+	var totalHeight = 0;
+	
+	$('img', '#mosaic').each(function(scope){
+			totalHeight += $(this).height() + margin;
+			//console.log($(this).height() )
+	});
+	
+	//console.log(totalHeight);
+	
+	var colHeight = totalHeight/colNum
+	
+	$('#mosaic').css('position', 'relative');
+	
+	
+	var currentXPosition = 0;
+	var currentYPosition = 0;
+	$('li', '#mosaic').each(function(){
+		var scale = $('img',this).width() / imgWidth;
+		//console.log( scale )
+		var adjustedHeight = 0
+		$(this).css({
+			top: currentYPosition,
+			left: currentXPosition,
+			position:'absolute'	,
+			overflow:'hidden'
+		})
+		$('img', this).css({	
+			width: imgWidth,
+			height: $( 'img', this ).height() / scale
+		});	
+		currentYPosition += $('img', this).height() + margin;
+		
+		if(currentYPosition > colHeight){
+			currentYPosition = 0;
+			currentXPosition += imgWidth + margin;
+		}
+		//hoverstate
+		$(this).append('<div class="mosaic-info"><div class="mosaic-content"></div></div>');
+		$('.mosaic-content', this).html( $( 'img', this ).attr('data-content'));
+		$('.mosaic-content', this).css({width:imgWidth})
+		$('.mosaic-info', this).css({display:'none'})
+		
+		$( this ).hover( function(){
+			//console.log( $( this ).attr('data-content') );
+			$('.mosaic-info', this).show();
+		},
+		function(){
+			$('.mosaic-info', this).hide();
+		});
+		
+	});
+
+})
+</script>
+</body>
+</html>

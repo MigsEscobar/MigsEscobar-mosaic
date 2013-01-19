@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Mosaic</title>
+</head>
+<body>
+<div id="mosaic">
+
+<img src="http://placehold.it/250x200" width="250" height="200" data-content="this is some addition content" />
+<img src="http://placehold.it/250x500" width="250" height="500"  />
+<img src="http://placehold.it/250x300" width="250" height="300"  />
+<img src="http://placehold.it/250x450" width="250" height="450"  />
+<img src="http://placehold.it/250x350" width="250" height="350"  />
+<img src="http://placehold.it/250x300" width="250" height="300"  />
+<img src="http://placehold.it/250x250" width="250" height="250"  />
+<img src="http://placehold.it/250x175" width="250" height="175"  />
+<img src="http://placehold.it/250x200" width="250" height="200"  />
+<img src="http://placehold.it/250x500" width="250" height="500"  />
+<img src="http://placehold.it/250x300" width="250" height="300"  />
+<img src="http://placehold.it/250x450" width="250" height="450"  />
+<img src="http://placehold.it/250x350" width="250" height="350"  />
+<img src="http://placehold.it/250x300" width="250" height="300"  />
+<img src="http://placehold.it/250x250" width="250" height="250"  />
+<img src="http://placehold.it/250x175" width="250" height="175"  />
+
+</div>
+
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script>
+$('document').ready(function(){
+	
+	var colNum = 8;
+	var margin = 10;
+	var imgWidth = 100;
+	var totalHeight = 0;
+	
+	$('img', '#mosaic').each(function(scope){
+			totalHeight += $(this).height() + margin;
+			//console.log($(this).height() )
+	});
+	
+	//console.log(totalHeight);
+	
+	var colHeight = totalHeight/colNum
+	
+	$('#mosaic').css('position', 'relative');
+	
+	
+	var currentXPosition = 0;
+	var currentYPosition = 0;
+	$('img', '#mosaic').each(function(){
+		var scale = $(this).width() / imgWidth;
+		//console.log( scale )
+		var adjustedHeight = 0
+		$(this).css({
+			top: currentYPosition,
+			left: currentXPosition,
+			position:'absolute'	,
+			width: imgWidth,
+			height: $( this ).height() / scale
+		})
+		
+		currentYPosition += $(this).height() + margin;
+		
+		if(currentYPosition > colHeight){
+			currentYPosition = 0;
+			currentXPosition += imgWidth + margin;
+		}
+		
+		$( this ).hover( function(){
+			console.log( $( this ).attr('data-content') );
+		});
+		
+	});
+
+})
+</script>
+</body>
+</html>
